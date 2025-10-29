@@ -93,9 +93,13 @@ if __name__ == "__main__":
 
             st.info("Processing your file... Please wait ⏳")
 
+            
+
             # Step 1: Identify document type
             agreement_type = agreement_comparision.document_type("temp_uploaded.pdf")
             st.write("**Detected Document Type:**", agreement_type)
+
+
 
             # Check if template exists for detected type
             if agreement_type in AGREEMENT_JSON_MAP:
@@ -103,13 +107,19 @@ if __name__ == "__main__":
                 unseen_data = data_extraction.Clause_extraction_with_summarization("temp_uploaded.pdf")
                 st.success("✅ Clause Extraction Completed")
 
+
+
                 # Step 3: Load respective template JSON
                 template_file = AGREEMENT_JSON_MAP[agreement_type]
                 with open(template_file, "r", encoding="utf-8") as f:
                     template_data = json.load(f)
 
+
+
                 # Step 4: Compare agreements
                 result = agreement_comparision.compare_agreements(unseen_data, template_data)
+
+
 
                 # Display result
                 st.subheader("🧾 Comparison Result")

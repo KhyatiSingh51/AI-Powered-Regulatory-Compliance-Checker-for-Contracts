@@ -21,10 +21,6 @@ venv312/
 *.swo
 .DS_Store
 
-# --- PDF or temporary uploaded documents ---
-*.pdf
-document to compare/
-temp_*.pdf
 
 # --- VSCode settings ---
 .vscode/

@@ -55,13 +55,13 @@ def call_scrape_funtion():
             scrape_data(DOCUMENT_MAP[key]["link"], temp_agreement)
 
             # extract clauses
-            clauses = data_extraction.Clause_extraction(temp_agreement)
+            # clauses = data_extraction.Clause_extraction(temp_agreement)
 
             # Step 6: Update respective json file with new clauses
-            with open(DOCUMENT_MAP[key]["json_file"], "w", encoding="utf-8") as f:
-                json.dump(clauses, f, indent=2, ensure_ascii=False)
+            # with open(DOCUMENT_MAP[key]["json_file"], "w", encoding="utf-8") as f:
+            #     json.dump(clauses, f, indent=2, ensure_ascii=False)
 
-        print("All downloads and JSON updates completed successfully ✅")
+        # print("All downloads and JSON updates completed successfully ✅")
 
     except Exception as e:
         print("Error Occured in Scrapping", e)
