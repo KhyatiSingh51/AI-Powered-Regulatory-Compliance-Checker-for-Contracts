@@ -93,45 +93,45 @@ if __name__ == "__main__":
 
             st.info("Processing your file... Please wait ⏳")
 
-            
-
             # Step 1: Identify document type
             agreement_type = agreement_comparision.document_type("temp_uploaded.pdf")
             st.write("**Detected Document Type:**", agreement_type)
 
-
-
             # Check if template exists for detected type
             if agreement_type in AGREEMENT_JSON_MAP:
-                # Step 2: Extract clause data (with summarization)
-                unseen_data = data_extraction.Clause_extraction_with_summarization("temp_uploaded.pdf")
-                st.success("✅ Clause Extraction Completed")
-
-
+                # Step 2: Extract clause data with Groq fallback
+                try:
+                    unseen_data = data_extraction.Clause_extraction_with_summarization("temp_uploaded.pdf")
+                    st.success("✅ Clause Extraction Completed")
+                except Exception as e:
+                    if "overload" in str(e).lower():
+                        st.warning("Model overloaded! Switching to Groq accelerated processing...")
+                        unseen_data = data_extraction.Clause_extraction_with_summarization_groq("temp_uploaded.pdf")
+                        st.success("✅ Clause Extraction Completed via Groq")
+                    else:
+                        raise e  # let outer except block handle other errors
 
                 # Step 3: Load respective template JSON
                 template_file = AGREEMENT_JSON_MAP[agreement_type]
                 with open(template_file, "r", encoding="utf-8") as f:
                     template_data = json.load(f)
 
-
-
                 # Step 4: Compare agreements
                 result = agreement_comparision.compare_agreements(unseen_data, template_data)
-
-
 
                 # Display result
                 st.subheader("🧾 Comparison Result")
                 st.write(result)
-                body = f"Agreement type is {agreement_type} \n Comparision Result:{result}"
-                notification.send_notification("Comparison Result",body)
+
+                # Send notification
+                body = f"Agreement type is {agreement_type} \n Comparison Result: {result}"
+                notification.send_notification("Comparison Result", body)
 
             else:
-                st.error(f"This document is not under GDPR compliance")
+                st.error("This document is not under GDPR compliance")
 
     except Exception as e:
-        # model overloaded run groq
-        print("Error Occured in document comparision", e )
-        notification.send_notification("Error Occured in document comparision", f"Error is {e}")
+        # Outer exception handling for all other errors
+        print("Error Occurred in document comparison:", e)
+        notification.send_notification("Error Occurred in document comparison", str(e))
         st.error(f"We are facing some issue: {e}")
