@@ -131,6 +131,7 @@ if __name__ == "__main__":
                 st.error(f"This document is not under GDPR compliance")
 
     except Exception as e:
+        # model overloaded run groq
         print("Error Occured in document comparision", e )
         notification.send_notification("Error Occured in document comparision", f"Error is {e}")
         st.error(f"We are facing some issue: {e}")
