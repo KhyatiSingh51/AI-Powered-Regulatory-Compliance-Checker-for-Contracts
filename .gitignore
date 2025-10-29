@@ -1,0 +1,33 @@
+# --- Python cache and compiled files ---
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# --- Virtual environment ---
+venv/
+venv312/
+.env/
+
+# --- Environment and secret files ---
+.env
+*.env
+
+# --- Temporary or local files ---
+*.log
+*.tmp
+*.bak
+*.swp
+*.swo
+.DS_Store
+
+# --- PDF or temporary uploaded documents ---
+*.pdf
+document to compare/
+temp_*.pdf
+
+# --- VSCode settings ---
+.vscode/
+
+# --- Streamlit cache ---
+.streamlit/

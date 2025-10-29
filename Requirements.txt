@@ -1,0 +1,8 @@
+google-genai
+python-dotenv
+numpy
+PyPDF2
+groq
+Streamlit
+beautifulsoup4
+schedule
