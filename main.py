@@ -128,8 +128,9 @@ if __name__ == "__main__":
                 notification.send_notification("Comparison Result",body)
 
             else:
-                st.error(f"No template found for detected type: {agreement_type}")
+                st.error(f"This document is not under GDPR compliance")
 
     except Exception as e:
         print("Error Occured in document comparision", e )
         notification.send_notification("Error Occured in document comparision", f"Error is {e}")
+        st.error(f"We are facing some issue: {e}")
