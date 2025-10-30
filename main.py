@@ -73,11 +73,11 @@ threading.Thread(target=run_scheduler, daemon=True).start()
 if __name__ == "__main__":
     try:
         AGREEMENT_JSON_MAP = {
-            "Data Processing Agreement": "dpa_sum.json",
-            "Joint Controller Agreement": "jca.json",
-            "Controller-to-Controller Agreement": "c2c.json",
-            "Processor-to-Subprocessor Agreement": "subprocessor.json",
-            "Standard Contractual Clauses": "scc.json"
+            "Data Processing Agreement":"json_file/dpa.json",
+            "Joint Controller Agreement": "json_file/jca.json",
+            "Controller-to-Controller Agreement":"json_file/c2c.json",
+            "Processor-to-Subprocessor Agreement":"json_file/subprocessor.json",
+            "Standard Contractual Clauses": "json_file/scc.json"
         }
 
         # Streamlit Title

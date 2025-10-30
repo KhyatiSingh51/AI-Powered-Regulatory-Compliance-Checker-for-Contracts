@@ -171,7 +171,7 @@ def Clause_extraction_with_summarization_groq(file):
         for page in reader.pages:
             text += page.extract_text()
 
-    groq_client = Groq(api_key=os.getenv("GROQ_API_KEY"))
+    groq_client = Groq(api_key=os.getenv("groq_api_key"))
 
     prompt = f"""
     You are an expert legal contract analyst.
@@ -220,11 +220,11 @@ if __name__ == "__main__":
     try:
         # Generate JSON templates for existing contracts
         TEMPLATE_MAP = {
-            "dpa.json": "templates/GDPR-Sample-Agreement.pdf",
-            "jca.json": "templates/(JCA) model-joint-controllership-agreement.pdf",
-            "c2c.json": "templates/(C2C) 2-Controller-to-controller-data-privacy-addendum.pdf",
-            "scc.json": "templates/Standard-Contractual-Clauses-SCCs.pdf",
-            "subprocessing.json": "templates/(Subprocessing Contract) Personal-Data-Sub-Processor-Agreement-2024-01-24.pdf"
+            "dpa.json":"templates/GDPR-Sample-Agreement.pdf",
+            "jca.json":"templates/(JCA) model-joint-controllership-agreement.pdf",
+            "c2c.json":"templates/(C2C) 2-Controller-to-controller-data-privacy-addendum.pdf",
+            "scc.json":"templates/Standard-Contractual-Clauses-SCCs.pdf",
+            "subprocessing.json":"templates/(Subprocessing Contract) Personal-Data-Sub-Processor-Agreement-2024-01-24.pdf"
         }
 
         for key, value in TEMPLATE_MAP.items():
