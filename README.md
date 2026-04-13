@@ -1,4 +1,4 @@
-# 🚀 AI-Powered Regulatory Compliance Checker
+# 🚀 AI-Powered Regulatory Compliance Checker for Contract
 
 ## 📌 Overview
 This project automates the analysis of legal contracts and checks compliance with regulatory standards such as GDPR using AI.
